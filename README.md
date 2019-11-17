@@ -1,20 +1,13 @@
-# Complete Guide to Node Authentication with MySQL
+# Autenticacion de usuario en Node con MySQL y Passport
+# Motor de plantillas Handlebars
+# mensajes de feedback al usuario con Flash
 
-
-Current version database is ported to MySQL
-
-We will be using Passport to authenticate users locally, 
-
-## Instructions
-
-If you would like to download the code and try it for yourself:
+## Instrucciones
 
 1. Clone the repo: `git clone https://github.com/dev-singhamit/node-express-passport-mysql.git`
-1. Install packages: `npm install`
-1. Edit the database configuration: `config/database.js`
-1. Create the database schema: `node scripts/create_database.js`
-1. Launch: `node server.js`
-1. Visit in your browser at: `http://localhost:8080`
+1. Instalá las dependencias que usa el proyecto: `npm install`
+1. Editá la configuracion con tu base de datos en: `config/database.js`
+1. Crear el esquema de la Base de dato con comando: `node scripts/create_database.js`
+1. En la consola ejecutá el comando: `node server.js`
+1. Escribí en tu navegador: `http://localhost:8080`
 
-
-Licence: 1

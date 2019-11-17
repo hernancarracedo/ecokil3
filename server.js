@@ -1,25 +1,22 @@
 // server.js
-
 // set up ======================================================================
-// get all the tools we need
+// se toman todas las herramientas que se necesitan para la aplicacion
 var express  = require('express');
 var session  = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-//var exphbs = require('express-handlebars');
+var exphbs = require('express-handlebars');
 var path = require('path');
 var morgan = require('morgan');
 var app      = express();
-var port     = process.env.PORT || 8080;
+var port     = process.env.PORT || 8000;
 
 var passport = require('passport');
 var flash    = require('connect-flash');
 
 // configuration ===============================================================
 // connect to our database
-
 require('./config/passport')(passport); // pass passport for configuration
-
 
 
 // set up our express application
@@ -30,7 +27,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-app.set('view engine', 'ejs'); // set up ejs for templating
+//app.set('view engine', 'ejs'); // set up ejs for templating
 /*
 app.engine('.hbs', exphbs({
 	defaultLayout: 'main',
@@ -39,6 +36,19 @@ app.engine('.hbs', exphbs({
 	extname: '.hbs'
   }));
 */
+
+app.set('views', path.join(__dirname, 'views'));
+app.engine('.hbs', exphbs({
+  defaultLayout: 'main',
+  layoutsDir: path.join(app.get('views'), 'layouts'),
+  partialsDir: path.join(app.get('views'), 'partials'),
+  extname: '.hbs'
+}));
+app.set('view engine', '.hbs');
+
+
+
+
 
 // required for passport
 app.use(session({

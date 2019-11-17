@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ECOKIL | Servicios Sustentables</title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="">
+
+    <div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+               
+                                   <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <img alt="image" class="rounded-circle" src="/img/profile_small.jpg"/>
+                             
+                                <span class="block m-t-xs font-bold">{{user.name}}</span>
+                                <span class="block m-t-xs font-bold">{{user.email}}</span>
+                                 
+                         
+                           
+                        </div>
+                        <div class="logo-element">
+                           TTS
+                        </div>
+                    </li>
+                  <li>
+                        <a href="/asset"><i class="fa fa fa-wrench"></i> <span class="nav-label">Herramientas</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="/asset">Gestionar</a></li>
+                            <li><a href="/assetEstados">Estados Assets</a></li>
+                            <li><a href="#"> Mantenimiento</a></li>
+                            <li><a href="/conexion"><span class="nav-label">Conexiones</span></a>
+                </li>
+                 <li>
+                        </ul>
+                    </li>
+                          <li>
+                        <a href="#"><i class="fa fa fa-cog"></i> <span class="nav-label">Configuraciones</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                                             <li>
+                    <a href="/tipotrabajo"> <span class="nav-label">Tipo Trabajo</span></a>
+                </li>
+ 
+                  <li>
+                    <a href="/servprod"> <span class="nav-label">servicios</span></a>
+                </li>
+                </li>
+                 <li>
+                        </ul>
+                    </li>    
+
+               
+
+                
+
+                 <li>
+                    <a href="/eso"><i class="fa fa-diamond"></i> <span class="nav-label">ESO</span></a>
+                </li>
+                                <li>
+                    <a href="/cliente"><i class="fa fa-male"></i> <span class="nav-label">Clientes</span></a>
+                </li>    
+               
+                                <li>
+                    <a href="/users"><i class="fa fa-id-card-o"></i> <span class="nav-label">Gestión usuarios</span></a>
+                </li>
+
+                              </li>
+                                <li>
+                    <a href="/ot"><i class="fa fa-pencil-square-o"></i> <span class="nav-label">Ordenes Trabajo</span></a>
+                </li>
+                
+                
+                
+            </ul>
+
+        </div>
+    </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" action="search_results.html">
+                <div class="form-group">
+                    <input type="text" placeholder="Buscar" class="form-control" name="top-search" id="top-search">
+                </div>
+            </form>
+        </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">Thru Tubing Solutions</span>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-envelope"></i>  <span class="label label-warning">0</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+ 
+                       
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="mailbox.html" class="dropdown-item">
+                                    <i class="fa fa-envelope"></i> <strong>Leer todos</strong>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell"></i>  <span class="label label-primary">0</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        
+                        <li class="dropdown-divider"></li>
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="notifications.html" class="dropdown-item">
+                                    <strong>Ver todas</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="/users/logout">
+                        <i class="fa fa-sign-out"></i> Log out
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+        </div>
+        {{> messages }}
+        {{> errors }}
+        {{{body}}}
+
+         <!-- Mainly scripts -->
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="/js/inspinia.js"></script>
+    <script src="/js/plugins/pace/pace.min.js"></script>
+
+
+    <script src="/js/plugins/dataTables/datatables.min.js"></script>
+    <script src="/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+ <!-- Dual Listbox -->
+    <script src="/js/plugins/dualListbox/jquery.bootstrap-duallistbox.js"></script>
+
+
+
+  <!-- Page-Level Scripts -->
+    <script>
+        $(document).ready(function(){
+            $('.dataTables-example').DataTable({
+                pageLength: 25,
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy'},
+                    {extend: 'csv'},
+                    {extend: 'excel', title: 'ExampleFile'},
+                    {extend: 'pdf', title: 'ExampleFile'},
+
+                    {extend: 'print',
+                     customize: function (win){
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit');
+                    }
+                    }
+                ]
+
+            });
+
+        });
+
+
+            $('.dual_select').bootstrapDualListbox({
+                selectorMinimalHeight: 160
+            });
+
+    </script>
+
+
+</body>
+
+</html>
