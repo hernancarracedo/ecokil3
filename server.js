@@ -76,7 +76,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('./routes/usuario'));
 app.use(require('./routes/perfil'));
 app.use(require('./routes/index'));
-
+app.use(require('./routes/gasto'));
 
 // launch ======================================================================
 app.listen(port);
