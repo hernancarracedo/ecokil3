@@ -1,0 +1,102 @@
+{{#each errors}}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  {{text}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/each}}
+
+
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2><i class="fa fa-tasks"></i><strong> Modificar Tarea</strong></h2>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+ 
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+ 
+                        <div class="ibox-content">
+           
+
+        <form action="/tarea/edit-tarea/{{result_tarea.id}}?_method=PUT" method="POST">         
+            <div class="col-sm-12">
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Nombre Tarea</label>
+                <div class="col-sm-10">
+                  <input type="text" name="nombre" class="form-control" value="{{result_tarea.nombre}}" />
+                  
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Descripcion Tarea</label>
+                <div class="col-sm-10">
+                  <input type="text" name="descripcion" class="form-control" value="{{result_tarea.descripcion}}" />
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Prioridad</label>
+                <div class="col-sm-10"> <select name="relevancia" class="form-control show-tick">
+                    <option value="{{result_tarea.relevancia_tarea_id}}">{{result_tarea.tx_tarea_relevancia}}</option>
+                    
+                    {{#each result_relevancia}}
+                    <option value="{{this.id}}">{{this.tx_tarea_relevancia}}</option>
+                    {{/each}}
+                    
+                  </select></div>
+              </div>
+
+
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Responsable</label>
+                <div class="col-sm-10">
+                  <select name="responsable" class="form-control show-tick">
+                    <option value="{{result_tarea.personal_id}}">{{result_tarea.responsable}}</option>
+                    
+                    {{#each result_personal}}
+                    <option value="{{this.id}}">{{this.responsable}}</option>
+                    {{/each}}
+                    
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Fecha Vencimiento</label>
+                <div class="col-sm-10"> <input type="date" name="vencimiento" class="form-control" value="{{result_tarea.vencimiento}}" /></div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Estado</label>
+                <div class="col-sm-10">
+                  <select name="estado" class="form-control show-tick">
+                    <option value="{{result_tarea.estado_tarea_id}}">{{result_tarea.tx_tarea_estado}}</option>
+
+                    {{#each result_estado}}
+                    <option value="{{this.id}}">{{this.tx_tarea_estado}}</option>
+                    {{/each}}
+                    
+                  </select>
+                </div>
+              </div>              
+
+
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Guardar Cambios en Tarea</button>
+        </div>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+</div>

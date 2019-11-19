@@ -13,6 +13,7 @@ var port     = process.env.PORT || 8000;
 
 var passport = require('passport');
 var flash    = require('connect-flash');
+var methodOverride = require('method-override');
 
 // configuration ===============================================================
 // connect to our database
@@ -47,7 +48,7 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs');
 
 
-
+app.use(methodOverride('_method'));
 
 
 // required for passport
@@ -77,6 +78,7 @@ app.use(require('./routes/usuario'));
 app.use(require('./routes/perfil'));
 app.use(require('./routes/index'));
 app.use(require('./routes/gasto'));
+app.use(require('./routes/tarea'));
 
 // launch ======================================================================
 app.listen(port);

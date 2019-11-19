@@ -1,5 +1,4 @@
- 
-       <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
                     <h2><i class="fa fa-sign-out"></i> <strong>Gastos</strong></h2>
  
@@ -62,7 +61,7 @@
                                             <td class="center">
                                                 <div class="btn-group">
                                                     <a href="/gasto/edit/{{this.id_gasto}}" class="btn-white btn btn-xs">Editar</a>
-                                                    <form action="/gasto/delete/{{this.id_gasto}}?_method=DELETE" method="POST">
+                                                    <form action="/gasto/delete/{{this.id_gasto}}?_method=PUT" method="POST">
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button class="btn-white btn btn-xs">Eliminar</button>
                                                     </form>
