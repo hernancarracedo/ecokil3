@@ -7,8 +7,14 @@ conex.query('USE ' + dbconfig.database);
 
 //Get todos los Gastos
 async function getGastos(req, res){
-  console.log ('paso');
-  sql = "SELECT * FROM gasto";
+  //sql = "SELECT * FROM gasto";
+  sql = `SELECT id_gasto, GAS.id_tipo, tx_tipo, fecha, observaciones, monto, GAS.id_billetera, tx_billetera, GAS.id_forma_pago, tx_forma_pago, tx_grupo, vencimiento, GAS.baja
+  FROM gasto as GAS 
+  LEFT JOIN gasto_tipo as TIP on TIP.id_tipo = GAS.id_tipo
+  LEFT JOIN gasto_grupo as GRU on GRU.id_grupo = TIP.id_grupo
+  LEFT JOIN gasto_billetera as BIL on BIL.id_billetera = GAS.id_billetera
+  LEFT JOIN gasto_forma_pago as FP on FP.id_forma_pago = GAS.id_forma_pago
+  WHERE GAS.baja is null`;
   conex.query(sql, function(error, resultado, fields){
       if (error) {
           //console.log("Ha ocurrido un error en la consulta", error.message);
@@ -42,7 +48,7 @@ async function gastoRender(req, res){
                   return res.status(404).send("Ha ocurrido un error en la consulta");
               }
 
-              res.render('gasto/new-gasto', {result_categorias, result_billetera, result_formapago, layout:'mainlayout'});
+              res.render('gasto/new-gasto', {result_categorias, result_billetera, result_formapago, layout:'null'});
           });
       });
 
@@ -97,28 +103,33 @@ async function newGasto(req, res){
 
 
 function gastoEditRender(req, res){
-      sql = `SELECT id_gasto, GAS.id_tipo, CONCAT(' [ ', tx_grupo , ' ] ', tx_tipo) as categoria, fecha, observaciones, monto, GAS.id_billetera, tx_billetera, GAS.id_forma_pago, tx_forma_pago, tx_grupo, vencimiento, GAS.baja
-      FROM gasto as GAS 
-      LEFT JOIN gasto_tipo as TIP on TIP.id_tipo = GAS.id_tipo
-      LEFT JOIN gasto_grupo as GRU on GRU.id_grupo = TIP.id_grupo
-      LEFT JOIN gasto_billetera as BIL on BIL.id_billetera = GAS.id_billetera
-      LEFT JOIN gasto_forma_pago as FP on FP.id_forma_pago = GAS.id_forma_pago
-      WHERE id_gasto ='`+req.params.id+`'`;
-      conex.query(sql, function(error, result_gasto, fields){
-          sql = "select id_billetera, tx_billetera from gasto_billetera WHERE baja is null";
-          conex.query(sql, function(error, result_billetera, fields){
-              sql = "select id_forma_pago, tx_forma_pago from gasto_forma_pago WHERE baja is null";
-              conex.query(sql, function(error, result_formapago, fields){
-                  sql = `SELECT id_tipo, CONCAT(' [ ', tx_grupo , ' ] ', tx_tipo) as categoria FROM gasto_tipo as TIP
-                  LEFT JOIN gasto_grupo as GRU on GRU.id_grupo = TIP.id_grupo
-                  WHERE TIP.baja is null`;
-                  conex.query(sql, function(error, result_categorias, fields){
-                      result_gasto = result_gasto[0];
-                      res.render('gasto/edit-gasto', {result_gasto, result_billetera, result_formapago, result_categorias, layout:'mainlayout'});                 
-                  });    
-              });
-          });
-      }); 
+    if (!isNaN(req.params.id)) { ////// solo la primera vez entra y luego vuelve a intentar  ??????
+        sql = `SELECT id_gasto, GAS.id_tipo, CONCAT(' [ ', tx_grupo , ' ] ', tx_tipo) as categoria, fecha, observaciones, monto, GAS.id_billetera, tx_billetera, GAS.id_forma_pago, tx_forma_pago, tx_grupo, vencimiento, GAS.baja
+        FROM gasto as GAS 
+        LEFT JOIN gasto_tipo as TIP on TIP.id_tipo = GAS.id_tipo
+        LEFT JOIN gasto_grupo as GRU on GRU.id_grupo = TIP.id_grupo
+        LEFT JOIN gasto_billetera as BIL on BIL.id_billetera = GAS.id_billetera
+        LEFT JOIN gasto_forma_pago as FP on FP.id_forma_pago = GAS.id_forma_pago
+        WHERE id_gasto ='`+req.params.id+`'`;
+        conex.query(sql, function(error, result_gasto, fields){
+            sql = "select id_billetera, tx_billetera from gasto_billetera WHERE baja is null";
+            conex.query(sql, function(error, result_billetera, fields){
+                sql = "select id_forma_pago, tx_forma_pago from gasto_forma_pago WHERE baja is null";
+                conex.query(sql, function(error, result_formapago, fields){
+                    sql = `SELECT id_tipo, CONCAT(' [ ', tx_grupo , ' ] ', tx_tipo) as categoria FROM gasto_tipo as TIP
+                    LEFT JOIN gasto_grupo as GRU on GRU.id_grupo = TIP.id_grupo
+                    WHERE TIP.baja is null`;
+                    conex.query(sql, function(error, result_categorias, fields){
+                        result_gasto = result_gasto[0];
+                        res.render('gasto/edit-gasto', {result_gasto, result_billetera, result_formapago, result_categorias, layout:'mainlayout'});
+                        
+                    });    
+                });
+            });
+        }); 
+    } else {
+        console.log('paso si que lo llamen -> GUORNINGGGG!!!!');
+    }
 }
 
 
