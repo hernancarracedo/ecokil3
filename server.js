@@ -79,6 +79,7 @@ app.use(require('./routes/perfil'));
 app.use(require('./routes/index'));
 app.use(require('./routes/gasto'));
 app.use(require('./routes/tarea'));
+app.use(require('./routes/visitamip'));
 
 // launch ======================================================================
 app.listen(port);
