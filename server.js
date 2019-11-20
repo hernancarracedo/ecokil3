@@ -80,6 +80,7 @@ app.use(require('./routes/index'));
 app.use(require('./routes/gasto'));
 app.use(require('./routes/tarea'));
 app.use(require('./routes/visitamip'));
+app.use(require('./routes/cliente'));
 
 // launch ======================================================================
 app.listen(port);

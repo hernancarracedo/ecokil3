@@ -10,8 +10,8 @@ const { isAuthenticated } = require('../helpers/auth');
 router.get('/visitamip/add', isAuthenticated, visitamipController.visitamipRender);
 router.post('/visitamip/new-visitamip', isAuthenticated, visitamipController.newVisitamip);
 router.get('/visitamip', isAuthenticated, visitamipController.getVisitasmip);
-//router.get('/gasto/edit/:id', isAuthenticated, gastoController.gastoEditRender);
-//router.put('/gasto/edit-gasto/:id', isAuthenticated, gastoController.gastoEdit);
-//router.put('/gasto/delete/:id', isAuthenticated, gastoController.gastoDelete);
+router.get('/visitamip/edit/:id', isAuthenticated, visitamipController.visitamipEditRender);
+router.put('/visitamip/edit-visitamip/:id', isAuthenticated, visitamipController.visitamipEdit);
+router.put('/visitamip/delete/:id', isAuthenticated, visitamipController.visitamipDelete);
 
 module.exports = router;

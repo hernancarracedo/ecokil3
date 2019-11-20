@@ -1,0 +1,86 @@
+      <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2><i class="fa fa-th-large"></i> <strong>Clientes</strong></h2>
+ 
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="/cliente/add" class="dropdown-item">Nuevo</a>
+                                </li>
+                             
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover dataTables-example" >
+                    <thead>
+                    <tr>
+                                            <th>Cod Cliente</th>
+                                            <th>Cliente</th>
+                                            <th>Tipo Cliente</th>
+                                            <th>Fecha Alta</th>
+                                            <th>Observaciones</th>
+                                            <th>ACCIONES</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        
+
+                                        {{#each resultado}}
+                                        <tr>
+                                            <td>{{ this.id_cliente }} </td>  
+                                            <td>{{ this.tx_cliente }} </td>
+                                            <td>{{ this.tx_tipo_cliente }} </td>
+                                            <td>{{ this.fecha_alta }} </td>
+                                            <td>{{ this.observaciones }} </td>
+                                        
+                                            <td class="center">
+                                                <div class="btn-group">
+                                                    <a href="/cliente/edit/{{this.id_cliente}}" class="btn-white btn btn-xs">Editar</a>
+                                                    <form action="/cliente/delete/{{this.id_cliente}}?_method=PUT" method="POST">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button class="btn-white btn btn-xs">Eliminar</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {{/each}}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                                            <th>Cod Cliente</th>
+                                            <th>Cliente</th>
+                                            <th>Tipo Cliente</th>
+                                            <th>Fecha Alta</th>
+                                            <th>Observaciones</th>
+                                            <th>ACCIONES</th>
+                    </tr>
+                    </tfoot>
+                    </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
