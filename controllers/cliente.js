@@ -20,82 +20,55 @@ async function getClientes(req, res){
 }
 
 //Render Formulario de gastos nuevos
-async function gastoRender(req, res){
-  sql = `SELECT id_tipo, CONCAT(' [ ', tx_grupo , ' ] ', tx_tipo) as categoria FROM gasto_tipo as TIP
-  LEFT JOIN gasto_grupo as GRU on GRU.id_grupo = TIP.id_grupo
-  WHERE TIP.baja is null`;
-  conex.query(sql, function(error, result_categorias, fields){
-      if (error) {
-          console.log("Ha ocurrido un error en la consulta", error.message);
-          return res.status(404).send("Ha ocurrido un error en la consulta");
-      }
-      sql = "SELECT id_billetera, tx_billetera FROM `gasto_billetera` WHERE baja is null";
-      conex.query(sql, function(error, result_billetera, fields){
-          if (error) {
-              console.log("Ha ocurrido un error en la consulta", error.message);
-              return res.status(404).send("Ha ocurrido un error en la consulta");
-          }
-          sql = "SELECT id_forma_pago, tx_forma_pago FROM `gasto_forma_pago` WHERE baja is null";
-          conex.query(sql, function(error, result_formapago, fields){
-              if (error) {
-                  console.log("Ha ocurrido un error en la consulta", error.message);
-                  return res.status(404).send("Ha ocurrido un error en la consulta");
-              }
-
-              res.render('gasto/new-gasto', {result_categorias, result_billetera, result_formapago, layout:'mainlayout'});
-          });
-      });
-
+async function clienteRender(req, res){
+  sql = `SELECT id_tipo_cliente, tx_tipo_cliente FROM cliente_tipo WHERE baja is null`;
+  conex.query(sql, function(error, result_tipocliente, fields){
+    if (error) {
+        console.log("Ha ocurrido un error en la consulta", error.message);
+        return res.status(404).send("Ha ocurrido un error en la consulta");
+    }
+    res.render('cliente/new-cliente', {result_tipocliente, layout:'mainlayout'});
   });
 }
-/*
+
 //Post Gasto
-async function newGasto(req, res){
-  const {id_tipo, fecha, observaciones, monto, id_billetera, id_forma_pago, vencimiento} = req.body;
+async function newCliente(req, res){
+  const {tx_cliente, id_tipo_cliente, fecha_alta, observaciones, monto, id_billetera, id_forma_pago, vencimiento} = req.body;
   const errors = [];
-  if (!id_tipo) { errors.push({text: 'Ingrese tipo de Gasto.'}); }
-  if (!fecha) { errors.push({text: 'Ingrese fecha del Gasto.'}); }
-  if (!observaciones) { errors.push({text: 'Ingrese alguna observacion del Gasto.'}); }
-  if (!monto) { errors.push({text: 'Ingrese el monto del Gasto.'}); }    
-  if (!id_billetera) { errors.push({text: 'Seleccione quien pagó Gasto.'}); }    
-  if (!id_forma_pago) { errors.push({text: 'Seleccione forma de pago del Gasto.'}); }    
-  
-  console.log("id_tipo: "+id_tipo);
-  console.log("fecha: "+fecha);
+  if (!tx_cliente) { errors.push({text: 'Ingrese el nombre del cliente.'}); }   
+  if (!id_tipo_cliente) { errors.push({text: 'Ingrese tipo de Cliente.'}); }
+  if (!fecha_alta) { errors.push({text: 'Ingrese fecha de alta del Cliente.'}); }
+   
+  console.log("tx_cliente: "+tx_cliente);
+  console.log("id_tipo_cliente: "+id_tipo_cliente);
+  console.log("fecha-alta: "+fecha_alta);
   console.log("observaciones: "+observaciones);
-  console.log("monto: "+monto);
-  console.log("id_billetera: "+id_billetera);
-  console.log("id_forma_pago: "+id_forma_pago);
-  console.log("vencimiento: "+vencimiento);
-  
+  console.log("id_usuario: "+req.user.id);
    
   if (errors.length > 0) {
       res.render('gasto/new-gasto', {
       errors,
-      id_tipo,
-      fecha,
+      tx_cliente,
+      id_tipo_cliente,
+      fecha_alta,
       observaciones,
-      monto,
-      id_billetera,
-      id_forma_pago,
-      vencimiento,
       layout: 'mainlayout'
       });
   } else {
-      sql = "INSERT INTO gasto (`id_tipo`, `fecha`, `observaciones`, `monto`, `id_billetera`, `id_forma_pago`, `vencimiento`) VALUES ('" + id_tipo + "', '" + fecha + "', '" + observaciones + "', '"+monto+"', '"+id_billetera+"', '"+id_forma_pago+"', '"+vencimiento+"')";
+      sql = "INSERT INTO cliente (`tx_cliente`, `id_tipo_cliente`, `fecha_alta`, `observaciones`, `id_usuario`) VALUES ('" + tx_cliente + "','" + id_tipo_cliente + "', '" + fecha_alta + "', '" + observaciones + "', '"+req.user.id+"')";
       console.log ("asi queda consulta:\n" + sql);
       conex.query(sql, function(error, resultado, fields){
           if (error) {
               console.log("Ha ocurrido un error en la consulta", error.message);
               return res.status(404).send("Ha ocurrido un error en la consulta");
           }
-          req.flash('success_msg', 'Nuevo GASTO Agregado');
-          res.redirect('/gasto');
+          req.flash('success_msg', 'Nuevo Cliente Agregado');
+          res.redirect('/cliente');
       });
   }
 }
 
-
+/*
 async function gastoEditRender(req, res){
     if (!isNaN(req.params.id)) { ////// solo la primera vez entra y luego vuelve a intentar  ??????
         sql = `SELECT id_gasto, GAS.id_tipo, CONCAT(' [ ', tx_grupo , ' ] ', tx_tipo) as categoria, fecha, observaciones, monto, GAS.id_billetera, tx_billetera, GAS.id_forma_pago, tx_forma_pago, tx_grupo, vencimiento, GAS.baja
@@ -175,8 +148,8 @@ async function gastoDelete(req, res){
 
  module.exports = {
     getClientes,
-    clienteRender
-    //newGasto,
+    clienteRender,
+    newCliente
     //gastoEditRender,
     //gastoEdit,
     //gastoDelete

@@ -7,8 +7,8 @@ const clienteController = require('../controllers/cliente');
 // Helpers
 const { isAuthenticated } = require('../helpers/auth');
  
-//router.get('/visitamip/add', isAuthenticated, visitamipController.visitamipRender);
-//router.post('/visitamip/new-visitamip', isAuthenticated, visitamipController.newVisitamip);
+router.get('/cliente/add', isAuthenticated, clienteController.clienteRender);
+router.post('/cliente/new-cliente', isAuthenticated, clienteController.newCliente);
 router.get('/cliente', isAuthenticated, clienteController.getClientes);
 //router.get('/visitamip/edit/:id', isAuthenticated, visitamipController.visitamipEditRender);
 //router.put('/visitamip/edit-visitamip/:id', isAuthenticated, visitamipController.visitamipEdit);
