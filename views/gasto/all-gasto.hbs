@@ -20,7 +20,7 @@
                                 <i class="fa fa-wrench"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-user">
-                                <li><a href="/gasto/add" class="dropdown-item">Nuevo</a>
+                                <li><a href="/gasto/add" class="dropdown-item">Nuevo Gasto</a>
                                 </li>
                              
                             </ul>
@@ -60,10 +60,10 @@
                                             
                                             <td class="center">
                                                 <div class="btn-group">
-                                                    <a href="/gasto/edit/{{this.id_gasto}}" class="btn-white btn btn-xs">Editar</a>
+                                                    <a href="/gasto/edit/{{this.id_gasto}}" class="btn-white btn btn-xs"><i class="fa fa-pencil"></i>&nbsp;Editar</a>
                                                     <form action="/gasto/delete/{{this.id_gasto}}?_method=PUT" method="POST">
                                                         <input type="hidden" name="_method" value="DELETE">
-                                                        <button class="btn-white btn btn-xs">Eliminar</button>
+                                                        <button class="btn-white btn btn-xs"><i class="fa fa-trash"></i>&nbsp;Eliminar</button>
                                                     </form>
                                                 </div>
                                             </td>

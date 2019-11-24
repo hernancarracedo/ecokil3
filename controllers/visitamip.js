@@ -7,7 +7,7 @@ conex.query('USE ' + dbconfig.database);
 
 //Get todos los Gastos
 async function getVisitasmip(req, res){
-  sql = `SELECT id_visitamip, tx_tipo_visitamip, fecha as fecha2, DATE_FORMAT(fecha, '%d/%m/%Y') as fecha, tx_cliente, remito, observaciones
+  sql = `SELECT id_visitamip, tx_tipo_visitamip, fecha as fecha2, DATE_FORMAT(fecha, '%d/%m/%Y') as fecha, tx_cliente, remito, VMP.observaciones
   FROM visitamip as VMP
   LEFT JOIN cliente as CLI on CLI.id_cliente = VMP.id_cliente
   LEFT JOIN visitamip_tipo as TIP on TIP.id_tipo_visitamip = VMP.id_tipo_visitamip
@@ -39,14 +39,15 @@ async function visitamipRender(req, res){
     });
 }
 
-//Post Gasto
+//Post visitamip
 async function newVisitamip(req, res){
   const {id_cliente, id_tipo_visitamip, fecha, remito, observaciones} = req.body;
+  const file = req.file;
   const errors = [];
-  if (!id_cliente) { errors.push({text: 'Ingrese tipo de Gasto.'}); }
-  if (!id_tipo_visitamip) { errors.push({text: 'Ingrese tipo de Gasto.'}); }  
-  if (!fecha) { errors.push({text: 'Ingrese fecha del Gasto.'}); }
-  if (!observaciones) { errors.push({text: 'Ingrese alguna observacion del Gasto.'}); }
+  if (!id_cliente) { errors.push({text: 'Ingrese Cliente.'}); }
+  if (!id_tipo_visitamip) { errors.push({text: 'Ingrese tipo de Visita.'}); }  
+  if (!fecha) { errors.push({text: 'Ingrese fecha de la visita.'}); }
+  if (!observaciones) { errors.push({text: 'Ingrese alguna observacion de la Visita.'}); }
   
   console.log("id_cliente: "+id_cliente);
   console.log("id_tipo_visitamip: "+id_tipo_visitamip);
@@ -54,9 +55,10 @@ async function newVisitamip(req, res){
   console.log("observaciones: "+observaciones);
   console.log("ID Usuario: "+req.user.id);
   console.log("Remito: "+remito);
+  console.log("archivo: "+file.originalname);
   
   if (errors.length > 0) {
-      res.render('visita/new-visitamip', {
+      res.render('visitamip/new-visitamip', {
       errors,
       id_cliente,
       id_tipo_visitamip,

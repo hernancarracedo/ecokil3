@@ -71,7 +71,7 @@ async function newTarea(req, res){
         relevancia,
         responsable,
         vencimiento,
-        layout: 'main'
+        layout: 'mainlayout'
         });
     } else {
         sql = "INSERT INTO tarea (`nombre`, `descripcion`, `personal_id`, `relevancia_tarea_id`, `vencimiento`, `estado_tarea_id`) VALUES ('" + nombre + "', '" + descripcion + "', " + responsable + ", "+relevancia+", '"+vencimiento+"', 1)";
@@ -80,6 +80,7 @@ async function newTarea(req, res){
                 console.log("Ha ocurrido un error en la consulta", error.message);
                 return res.status(404).send("Ha ocurrido un error en la consulta");
             }
+            req.flash('success_msg', 'Nueva Tarea Creada');
             res.redirect('/tarea');
         });
     }

@@ -10,8 +10,8 @@ const { isAuthenticated } = require('../helpers/auth');
 router.get('/cliente/add', isAuthenticated, clienteController.clienteRender);
 router.post('/cliente/new-cliente', isAuthenticated, clienteController.newCliente);
 router.get('/cliente', isAuthenticated, clienteController.getClientes);
-//router.get('/visitamip/edit/:id', isAuthenticated, visitamipController.visitamipEditRender);
-//router.put('/visitamip/edit-visitamip/:id', isAuthenticated, visitamipController.visitamipEdit);
-//router.put('/visitamip/delete/:id', isAuthenticated, visitamipController.visitamipDelete);
+router.get('/cliente/edit/:id', isAuthenticated, clienteController.clienteEditRender);
+router.put('/cliente/edit-cliente/:id', isAuthenticated, clienteController.clienteEdit);
+router.put('/cliente/delete/:id', isAuthenticated, clienteController.clienteDelete);
 
 module.exports = router;

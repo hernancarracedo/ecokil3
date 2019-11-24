@@ -46,7 +46,7 @@ async function newCliente(req, res){
   console.log("id_usuario: "+req.user.id);
    
   if (errors.length > 0) {
-      res.render('gasto/new-gasto', {
+      res.render('cliente/new-cliente', {
       errors,
       tx_cliente,
       id_tipo_cliente,
@@ -68,54 +68,39 @@ async function newCliente(req, res){
   }
 }
 
-/*
-async function gastoEditRender(req, res){
+
+async function clienteEditRender(req, res){
     if (!isNaN(req.params.id)) { ////// solo la primera vez entra y luego vuelve a intentar  ??????
-        sql = `SELECT id_gasto, GAS.id_tipo, CONCAT(' [ ', tx_grupo , ' ] ', tx_tipo) as categoria, fecha, observaciones, monto, GAS.id_billetera, tx_billetera, GAS.id_forma_pago, tx_forma_pago, tx_grupo, vencimiento, GAS.baja
-        FROM gasto as GAS 
-        LEFT JOIN gasto_tipo as TIP on TIP.id_tipo = GAS.id_tipo
-        LEFT JOIN gasto_grupo as GRU on GRU.id_grupo = TIP.id_grupo
-        LEFT JOIN gasto_billetera as BIL on BIL.id_billetera = GAS.id_billetera
-        LEFT JOIN gasto_forma_pago as FP on FP.id_forma_pago = GAS.id_forma_pago
-        WHERE id_gasto ='`+req.params.id+`'`;
-        conex.query(sql, function(error, result_gasto, fields){
-            sql = "select id_billetera, tx_billetera from gasto_billetera WHERE baja is null";
-            conex.query(sql, function(error, result_billetera, fields){
-                sql = "select id_forma_pago, tx_forma_pago from gasto_forma_pago WHERE baja is null";
-                conex.query(sql, function(error, result_formapago, fields){
-                    sql = `SELECT id_tipo, CONCAT(' [ ', tx_grupo , ' ] ', tx_tipo) as categoria FROM gasto_tipo as TIP
-                    LEFT JOIN gasto_grupo as GRU on GRU.id_grupo = TIP.id_grupo
-                    WHERE TIP.baja is null`;
-                    conex.query(sql, function(error, result_categorias, fields){
-                        result_gasto = result_gasto[0];
-                        res.render('gasto/edit-gasto', {result_gasto, result_billetera, result_formapago, result_categorias, layout:'mainlayout'});
+        sql = `select id_cliente, tx_cliente, CLI.id_tipo_cliente, tx_tipo_cliente, observaciones, fecha_alta as fecha2, DATE_FORMAT(fecha_alta, '%Y-%m-%d') as fecha_alta 
+        FROM cliente AS CLI
+        LEFT JOIN cliente_tipo as TIP on TIP.id_tipo_cliente = CLI.id_tipo_cliente
+        WHERE id_cliente ='`+req.params.id+`'`;
+            conex.query(sql, function(error, result_cliente, fields){
+            sql = `SELECT id_tipo_cliente, tx_tipo_cliente FROM cliente_tipo WHERE baja is null`;
+            conex.query(sql, function(error, result_tipocliente, fields){
+                        result_cliente = result_cliente[0];
+                        res.render('cliente/edit-cliente', {result_cliente, result_tipocliente, layout:'mainlayout'});
                         
                     });    
                 });
-            });
-        }); 
     } else {
         console.log('paso si que lo llamen -> GUORNINGGGG!!!!');
     }
 }
 
 
-async function gastoEdit(req, res){
-    //const {nombre, descripcion, relevancia, responsable, vencimiento, estado} = req.body;
-    //const {nombre, descripcion, relevancia, responsable, vencimiento} = req.body;
-    const {id_tipo, fecha, observaciones, monto, id_billetera, id_forma_pago, vencimiento} = req.body;
+
+async function clienteEdit(req, res){
+    const {tx_cliente, id_tipo_cliente, fecha_alta, observaciones} = req.body;
     let id = req.params.id;
     console.log ('id :'+id+'\n');
-    console.log ('id_tipo :'+id_tipo+'\n');
-    console.log ('fecha :'+fecha+'\n');
+    console.log ('tx_cliente :'+tx_cliente+'\n');
+    console.log ('id_tipo_cliente :'+id_tipo_cliente+'\n');
+    console.log ('fecha :'+fecha_alta+'\n');
     console.log ('observaciones :'+observaciones+'\n');
-    console.log ('monto :'+monto+'\n');
-    console.log ('id_billetera :'+id_billetera+'\n');
-    console.log ('id_forma_pago :'+id_forma_pago+'\n');
-    console.log ('vencimiento :'+vencimiento+'\n');
+    console.log("ID Usuario: "+req.user.id);
     
-    
-    sql = "UPDATE gasto SET id_tipo = '"+id_tipo+"', fecha = '"+fecha+"', observaciones = '"+observaciones+"', monto = '"+monto+"', id_billetera = '"+id_billetera+"', id_forma_pago = '"+id_forma_pago+"', vencimiento = '"+vencimiento+"' WHERE id_gasto = "+id;
+    sql = "UPDATE cliente SET tx_cliente = '"+tx_cliente+"', id_tipo_cliente = '"+id_tipo_cliente+"', fecha_alta = '"+fecha_alta+"', observaciones = '"+observaciones+"', id_usuario = '"+req.user.id+"' WHERE id_cliente = "+id;
     
     //console.log(sql);
     conex.query(sql, function(error, resultado, fields){
@@ -123,34 +108,29 @@ async function gastoEdit(req, res){
             console.log("Ha ocurrido un error en la consulta", error.message);
             return res.status(404).send("Ha ocurrido un error en la consulta");
         }
-        req.flash('success_msg', 'Gasto Actualizado');
-        res.redirect('/gasto');
-    });
-    
-   
+        req.flash('success_msg', 'Cliente Actualizado');
+        res.redirect('/cliente');
+    });   
 }
 
-async function gastoDelete(req, res){
-    //const {id_tipo, fecha, observaciones, monto, id_billetera, id_forma_pago, vencimiento} = req.body;
+async function clienteDelete(req, res){
     let id = req.params.id;
-    
-    sql = "UPDATE gasto SET baja = DATE_FORMAT(NOW( ) , '%Y-%m-%d') WHERE id_gasto = "+id;
+    sql = "UPDATE cliente SET baja = DATE_FORMAT(NOW( ) , '%Y-%m-%d') WHERE id_cliente = "+id;
     conex.query(sql, function(error, resultado, fields){
         if (error) {
             console.log("Ha ocurrido un error en la consulta", error.message);
             return res.status(404).send("Ha ocurrido un error en la consulta");
         }
-        req.flash('success_msg', 'Gasto Eliminado Exitosamente');
-        res.redirect('/gasto');
+        req.flash('success_msg', 'Cliente Eliminado Exitosamente');
+        res.redirect('/cliente');
     });
 }
-*/
 
  module.exports = {
     getClientes,
     clienteRender,
-    newCliente
-    //gastoEditRender,
-    //gastoEdit,
-    //gastoDelete
+    newCliente,
+    clienteEditRender,
+    clienteEdit,
+    clienteDelete
 }

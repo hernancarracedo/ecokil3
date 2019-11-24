@@ -1,0 +1,80 @@
+        <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2><i class="fa fa-address-book"></i> <strong>Registro Nuevo Contacto</strong></h2>
+               
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+ 
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-content">
+
+                            <form action="/contacto/new-contacto" method="POST">
+                                <div class="col-sm-12"></div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Contacto</label>
+                                    <div class="col-sm-10"> <input type="text" name="tx_contacto" class="form-control" placeholder="Ingrese nombre contacto" /></div>
+                                </div>                                
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Cliente Asociado</label>
+                                    <div class="col-md-10">    
+                                        <select  name ="id_cliente" class="form-control show-tick">
+                                            <option value="">-- Sin Relacion Cliente --</option>
+                                            {{#each result_cliente}}
+                                                <option value="{{this.id_cliente}}">{{this.tx_cliente}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                 <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Tipo Contacto</label>
+                                    <div class="col-md-10">    
+                                        <select  name ="id_tipo_contacto" class="form-control show-tick">
+                                            <option value="">-- Seleccione tipo de servicio --</option>
+                                            {{#each result_tipocontacto}}
+                                                <option value="{{this.id_tipo_contacto}}">{{this.tx_tipo_contacto}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>                                
+                                     
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Mail</label>
+                                    <div class="col-sm-10"><input type="text" name="mail" class="form-control" placeholder="Casilla de mail" /></div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Celular</label>
+                                    <div class="col-sm-10"><input type="text" name="celular" class="form-control" placeholder="Tel Celular" /></div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Telefono 2</label>
+                                    <div class="col-sm-10"><input type="text" name="telefono2" class="form-control" placeholder="otro telefono" /></div>
+                                </div>                                                                
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Observaciones</label>
+                                    <div class="col-sm-10"><input type="text" name="observaciones" class="form-control" placeholder="Obsevaciones" /></div>
+                                </div>
+            
+                                <div class="hr-line-dashed"></div>                                                                                              
+                                    <button class="btn btn-primary btn-block" type="submit">Guardar Nuevo Contacto</button>
+                                </div>
+                            </form>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

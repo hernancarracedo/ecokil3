@@ -1,0 +1,64 @@
+{{#each errors}}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  {{text}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/each}}
+ 
+        <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2><i class="fa fa-th-large"></i> <strong>Modificacion de Cliente</strong></h2>
+               
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+ 
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-content">
+
+                            <form action="/cliente/edit-cliente/{{result_cliente.id_cliente}}?_method=PUT" method="POST">
+                                <div class="col-sm-12"></div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Nombre Cliente</label>
+                                    <div class="col-sm-10"><input type="text" name="tx_cliente" class="form-control" value="{{result_cliente.tx_cliente}}" /></div>
+                                </div>                                
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Tipo Cliente</label>
+                                    <div class="col-md-10">    
+                                        <select  name ="id_tipo_cliente" class="form-control show-tick">
+                                            <option value="{{result_cliente.id_tipo_cliente}}">{{result_cliente.tx_tipo_cliente}}</option>
+                                            {{#each result_tipocliente}}
+                                            <option value="{{this.id_tipo_cliente}}">{{this.tx_tipo_cliente}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+                                     
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Fecha Alta</label>
+                                    <div class="col-sm-10"><input type="date" class="form-control" name="fecha_alta" value="{{result_cliente.fecha_alta}}"></div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Observaciones</label>
+                                    <div class="col-sm-10"><input type="text" name="observaciones" class="form-control" value="{{result_cliente.observaciones}}" /></div>
+                                </div>
+            
+                                <div class="hr-line-dashed"></div>                                                                                              
+                                    <button class="btn btn-primary btn-block" type="submit">Guardar Cambios en Cliente</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

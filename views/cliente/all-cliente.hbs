@@ -20,7 +20,7 @@
                                 <i class="fa fa-wrench"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-user">
-                                <li><a href="/cliente/add" class="dropdown-item">Nuevo</a>
+                                <li><a href="/cliente/add" class="dropdown-item">Nuevo Cliente</a>
                                 </li>
                              
                             </ul>
@@ -56,10 +56,10 @@
                                         
                                             <td class="center">
                                                 <div class="btn-group">
-                                                    <a href="/cliente/edit/{{this.id_cliente}}" class="btn-white btn btn-xs">Editar</a>
+                                                    <a href="/cliente/edit/{{this.id_cliente}}" class="btn-white btn btn-xs"><i class="fa fa-pencil"></i>&nbsp;Editar</a>
                                                     <form action="/cliente/delete/{{this.id_cliente}}?_method=PUT" method="POST">
                                                         <input type="hidden" name="_method" value="DELETE">
-                                                        <button class="btn-white btn btn-xs">Eliminar</button>
+                                                        <button class="btn-white btn btn-xs"><i class="fa fa-trash"></i>&nbsp;Eliminar</button>
                                                     </form>
                                                 </div>
                                             </td>

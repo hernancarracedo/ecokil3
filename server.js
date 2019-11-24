@@ -15,6 +15,10 @@ var passport = require('passport');
 var flash    = require('connect-flash');
 var methodOverride = require('method-override');
 
+//configurarcion para subir archivos por formularios
+//var multer  = require('multer')
+//var upload = multer({ dest: 'uploads/' })
+
 // configuration ===============================================================
 // connect to our database
 require('./config/passport')(passport); // pass passport for configuration
@@ -81,6 +85,8 @@ app.use(require('./routes/gasto'));
 app.use(require('./routes/tarea'));
 app.use(require('./routes/visitamip'));
 app.use(require('./routes/cliente'));
+app.use(require('./routes/contacto'));
+app.use(require('./routes/movibanco'));
 
 // launch ======================================================================
 app.listen(port);
