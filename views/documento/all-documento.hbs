@@ -1,6 +1,6 @@
        <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2><i class="fa fa-bug"></i> <strong>Visitas por Servicio MIP</strong></h2>
+                    <h2><i class="fa fa-file-pdf-o"></i> <strong>Documentos Archivados</strong></h2>
  
                 </div>
                 <div class="col-lg-2">
@@ -20,7 +20,7 @@
                                 <i class="fa fa-wrench"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-user">
-                                <li><a href="/visitamip/add" class="dropdown-item">Nueva Visita</a>
+                                <li><a href="/documento/add" class="dropdown-item">Nuevo Documento</a>
                                 </li>
                              
                             </ul>
@@ -36,9 +36,10 @@
                     <thead>
                     <tr>
                                             <th>Cliente</th>
-                                            <th>Tipo Servicio</th>
+                                            <th>Tipo Documento</th>
+                                            <th>Nombre</th>
                                             <th>Fecha</th>
-                                            <th>Remito</th>
+                                            <th>Abrir</th>
                                             <th>Observaciones</th>
                                             <th>ACCIONES</th>
                     </tr>
@@ -49,15 +50,16 @@
                                         {{#each resultado}}
                                         <tr>
                                             <td>{{ this.tx_cliente }} </td>  
-                                            <td>{{ this.tx_tipo_visitamip }} </td>
+                                            <td>{{ this.tx_docu_tipo }} </td>
+                                            <td>{{ this.tx_docu }} </td>
                                             <td>{{ this.fecha }} </td>
-                                            <td>{{ this.remito }} </td>
+                                            <td>{{ this.ruta_docu }} </td>
                                             <td>{{ this.observaciones }} </td>
                                         
                                             <td class="center">
                                                 <div class="btn-group">
-                                                    <a href="/visitamip/edit/{{this.id_visitamip}}" class="btn-white btn btn-xs"><i class="fa fa-pencil"></i>&nbsp;Editar</a>
-                                                    <form action="/visitamip/delete/{{this.id_visitamip}}?_method=PUT" method="POST">
+                                                    <a href="/documento/edit/{{this.id_docu}}" class="btn-white btn btn-xs"><i class="fa fa-pencil"></i>&nbsp;Editar</a>
+                                                    <form action="/documento/delete/{{this.id_docu}}?_method=PUT" method="POST">
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button class="btn-white btn btn-xs"<i class="fa fa-trash"></i>&nbsp;Eliminar</button>
                                                     </form>
@@ -69,9 +71,10 @@
                     <tfoot>
                     <tr>
                                             <th>Cliente</th>
-                                            <th>Tipo Servicio</th>
+                                            <th>Tipo Documento</th>
+                                            <th>Nombre</th>
                                             <th>Fecha</th>
-                                            <th>Remito</th>
+                                            <th>Abrir</th>
                                             <th>Observaciones</th>
                                             <th>ACCIONES</th>
                     </tr>

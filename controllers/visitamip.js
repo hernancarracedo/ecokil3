@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var bcrypt = require('bcrypt-nodejs');
+//var bcrypt = require('bcrypt-nodejs');
 var dbconfig = require('../config/database');
 var conex = mysql.createConnection(dbconfig.connection);
 
@@ -84,7 +84,7 @@ async function newVisitamip(req, res){
 
 async function visitamipEditRender(req, res){
     if (!isNaN(req.params.id)) { ////// solo la primera vez entra y luego vuelve a intentar  ??????
-        sql = `SELECT id_visitamip, VMP.id_tipo_visitamip, tx_tipo_visitamip, fecha as fecha2, DATE_FORMAT(fecha, '%Y-%m-%d') as fecha, VMP.id_cliente, tx_cliente, remito, observaciones
+        sql = `SELECT id_visitamip, VMP.id_tipo_visitamip, tx_tipo_visitamip, fecha as fecha2, DATE_FORMAT(fecha, '%Y-%m-%d') as fecha, VMP.id_cliente, tx_cliente, remito, VMP.observaciones
         FROM visitamip as VMP
         LEFT JOIN cliente as CLI on CLI.id_cliente = VMP.id_cliente
         LEFT JOIN visitamip_tipo as TIP on TIP.id_tipo_visitamip = VMP.id_tipo_visitamip

@@ -13,12 +13,12 @@ async function getMovisbanco(req, res){
   WHERE MOV.baja is null
   ORDER BY fecha2`;
   conex.query(sql, function(error, resultado, fields){
-      if (error) {
-          //console.log("Ha ocurrido un error en la consulta", error.message);
-          return res.status(404).send("Ha ocurrido un error en la consulta");
-      }
-
-      res.render('movibanco/all-movibanco', {resultado, layout: 'mainlayout'});
+      sql = `SELECT SUM(monto) as saldo FROM movibanco WHERE baja is null`;
+      conex.query(sql, function(error, resultado_saldo, fields){
+            //console.log('el saldo de la cuenta es: $ '+resultado_saldo[0].saldo);
+            resultado_saldo = resultado_saldo[0];
+            res.render('movibanco/all-movibanco', {resultado, resultado_saldo, layout: 'mainlayout'});
+      });      
   });
 }
 

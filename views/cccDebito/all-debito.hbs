@@ -1,6 +1,6 @@
-       <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2><i class="fa fa-bug"></i> <strong>Visitas por Servicio MIP</strong></h2>
+                    <h2><i class="fa fa-arrow-down text-danger"></i> <strong> Debitos en Cuenta Corriente Clientes</strong></h2>
  
                 </div>
                 <div class="col-lg-2">
@@ -20,9 +20,8 @@
                                 <i class="fa fa-wrench"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-user">
-                                <li><a href="/visitamip/add" class="dropdown-item">Nueva Visita</a>
+                                <li><a href="/cccDebito/add-debito" class="dropdown-item">Nuevo Debito (deuda)</a>
                                 </li>
-                             
                             </ul>
                             <a class="close-link">
                                 <i class="fa fa-times"></i>
@@ -35,31 +34,31 @@
                     <table class="table table-striped table-bordered table-hover dataTables-example" >
                     <thead>
                     <tr>
-                                            <th>Cliente</th>
-                                            <th>Tipo Servicio</th>
-                                            <th>Fecha</th>
-                                            <th>Remito</th>
-                                            <th>Observaciones</th>
+                                            <th>fecha</th>
+                                            <th>monto</th>
+                                            <th>cliente</th>
+                                            <th>tipo comprob</th>
+                                            <th>Nro comprob</th>
+                                            <th>observaciones</th>
                                             <th>ACCIONES</th>
                     </tr>
                     </thead>
                     <tbody>
-                        
-
                                         {{#each resultado}}
                                         <tr>
-                                            <td>{{ this.tx_cliente }} </td>  
-                                            <td>{{ this.tx_tipo_visitamip }} </td>
                                             <td>{{ this.fecha }} </td>
-                                            <td>{{ this.remito }} </td>
+                                            <td  class="text-danger">{{ this.monto }} </td>
+                                            <td>{{ this.tx_cliente }} </td>
+                                            <td>{{ this.tx_movicc_tipo_comprobante }} </td>
+                                            <td>{{ this.nro_comprobante }} </td>
                                             <td>{{ this.observaciones }} </td>
-                                        
+                                            
                                             <td class="center">
                                                 <div class="btn-group">
-                                                    <a href="/visitamip/edit/{{this.id_visitamip}}" class="btn-white btn btn-xs"><i class="fa fa-pencil"></i>&nbsp;Editar</a>
-                                                    <form action="/visitamip/delete/{{this.id_visitamip}}?_method=PUT" method="POST">
+                                                    <a href="/cccDebito/edit/{{this.id_movicc}}" class="btn-white btn btn-xs"><i class="fa fa-pencil"></i>&nbsp;Editar</a>
+                                                    <form action="/cccDebito/delete/{{this.id_movicc}}?_method=PUT" method="POST">
                                                         <input type="hidden" name="_method" value="DELETE">
-                                                        <button class="btn-white btn btn-xs"<i class="fa fa-trash"></i>&nbsp;Eliminar</button>
+                                                        <button class="btn-white btn btn-xs"><i class="fa fa-trash"></i>&nbsp;Eliminar</button>
                                                     </form>
                                                 </div>
                                             </td>
@@ -68,11 +67,12 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                                            <th>Cliente</th>
-                                            <th>Tipo Servicio</th>
-                                            <th>Fecha</th>
-                                            <th>Remito</th>
-                                            <th>Observaciones</th>
+                                            <th>fecha</th>
+                                            <th>monto</th>
+                                            <th>cliente</th>
+                                            <th>tipo comprob</th>
+                                            <th>Nro comprob</th>
+                                            <th>observaciones</th>
                                             <th>ACCIONES</th>
                     </tr>
                     </tfoot>

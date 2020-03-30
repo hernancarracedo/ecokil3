@@ -87,6 +87,10 @@ app.use(require('./routes/visitamip'));
 app.use(require('./routes/cliente'));
 app.use(require('./routes/contacto'));
 app.use(require('./routes/movibanco'));
+app.use(require('./routes/movicc'));
+app.use(require('./routes/cccCredito'));
+app.use(require('./routes/cccDebito'));
+app.use(require('./routes/documento'));
 
 // launch ======================================================================
 app.listen(port);

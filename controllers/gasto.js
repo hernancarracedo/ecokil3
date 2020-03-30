@@ -133,8 +133,6 @@ async function gastoEditRender(req, res){
 
 
 async function gastoEdit(req, res){
-    //const {nombre, descripcion, relevancia, responsable, vencimiento, estado} = req.body;
-    //const {nombre, descripcion, relevancia, responsable, vencimiento} = req.body;
     const {id_tipo, fecha, observaciones, monto, id_billetera, id_forma_pago, vencimiento} = req.body;
     let id = req.params.id;
     console.log ('id :'+id+'\n');
