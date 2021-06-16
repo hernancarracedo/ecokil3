@@ -8,8 +8,13 @@
 
 # Algunas de las funciones que realiza:
 Cronograma / Horarios de servicios.
+
 Adjuntar documentacion (PDFs) al sistema.
+
 CRUD Clientes
+
 CRUD Gastos
+
 Una TO DO LIST con Vencimientos y prioridad
+
 Bitacora de tareas Realizadas por cada empleado
