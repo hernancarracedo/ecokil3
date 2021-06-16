@@ -1,0 +1,71 @@
+        <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2><i class="fa fa-book"></i> <strong>Registro Nuevo elemento Bitacora</strong></h2>
+               
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+ 
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-content">
+
+                            <form action="/bitacora/new-bitacora" method="POST">
+                                <div class="col-sm-12"></div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Cliente Asociado</label>
+                                    <div class="col-md-10">    
+                                        <select  name ="id_cliente" class="form-control show-tick">
+                                            <option value="">-- Sin Relacion Cliente --</option>
+                                            {{#each result_clientes}}
+                                                <option value="{{this.id_cliente}}">{{this.tx_cliente}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                 <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Tipo Actividad</label>
+                                    <div class="col-md-10">    
+                                        <select  name ="id_bitacora_tipo" class="form-control show-tick">
+                                            <option value="">-- Seleccione tipo de servicio --</option>
+                                            {{#each result_tipos}}
+                                                <option value="{{this.id_bitacora_tipo}}">{{this.tx_bitacora_tipo}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>                                
+                                     
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Fecha</label>
+                                    <div class="col-sm-10"><input type="date" class="form-control" name="fecha" placeholder="Fecha" ></div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Hora</label>
+                                    <div class="col-sm-10"><input type="text" name="hora" class="form-control" placeholder="Hora" /></div>
+                                </div>
+                                                     
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Observaciones</label>
+                                    <div class="col-sm-10"><input type="text" name="observaciones" class="form-control" placeholder="Obsevaciones" /></div>
+                                </div>
+            
+                                <div class="hr-line-dashed"></div>                                                                                              
+                                    <button class="btn btn-primary btn-block" type="submit">Guardar Nuevo elemento en Bitacora</button>
+                                </div>
+                            </form>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

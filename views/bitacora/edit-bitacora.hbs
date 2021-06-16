@@ -1,0 +1,77 @@
+{{#each errors}}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  {{text}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/each}}
+ 
+        <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2><i class="fa fa-book"></i> <strong>Modificacion elemento de Bitacora</strong></h2>
+               
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+ 
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-content">
+
+                            <form action="/bitacora/edit-bitacora/{{result_bitacora.id_bitacora}}?_method=PUT" method="POST">
+                                <div class="col-sm-12"></div>
+                         
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Cliente Asociado</label>
+                                    <div class="col-md-10">    
+                                        <select  name ="id_cliente" class="form-control show-tick">
+                                            <option value="{{result_bitacora.id_cliente}}">{{result_bitacora.tx_cliente}}</option>
+                                            {{#each result_clientes}}
+                                            <option value="{{this.id_cliente}}">{{this.tx_cliente}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Tipo de Actividad</label>
+                                    <div class="col-md-10">    
+                                        <select  name ="id_bitacora_tipo" class="form-control show-tick">
+                                            <option value="{{result_bitacora.id_bitacora_tipo}}">{{result_bitacora.tx_bitacora_tipo}}</option>
+                                            {{#each result_tipos}}
+                                            <option value="{{this.id_bitacora_tipo}}">{{this.tx_bitacora_tipo}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>                                
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Fecha</label>
+                                    <div class="col-sm-10"><input type="date" class="form-control" name="fecha" value="{{result_bitacora.fecha}}"></div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Hora</label>
+                                    <div class="col-sm-10"><input type="text" name="hora" class="form-control" value="{{result_bitacora.hora}}" /></div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Observaciones</label>
+                                    <div class="col-sm-10"><input type="text" name="observaciones" class="form-control" value="{{result_bitacora.observaciones}}" /></div>
+                                </div>
+            
+                                <div class="hr-line-dashed"></div>                                                                                              
+                                    <button class="btn btn-primary btn-block" type="submit">Guardar Cambios elemento Bitacora</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

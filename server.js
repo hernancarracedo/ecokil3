@@ -80,7 +80,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 app.use(require('./routes/usuario'));
 app.use(require('./routes/perfil'));
-app.use(require('./routes/index'));
+//app.use(require('./routes/index'));
 app.use(require('./routes/gasto'));
 app.use(require('./routes/tarea'));
 app.use(require('./routes/visitamip'));
@@ -91,6 +91,7 @@ app.use(require('./routes/movicc'));
 app.use(require('./routes/cccCredito'));
 app.use(require('./routes/cccDebito'));
 app.use(require('./routes/documento'));
+app.use(require('./routes/bitacora'));
 
 // launch ======================================================================
 app.listen(port);

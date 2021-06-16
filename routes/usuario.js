@@ -4,7 +4,8 @@ const passport = require('passport');
 const usuarioController = require('../controllers/usuario');
 
 
-router.get('/usuario/login', usuarioController.signinRender);
+//router.get('/usuario/login', usuarioController.signinRender);
+router.get('/', usuarioController.signinRender);
 
 
 // process the login form
@@ -32,5 +33,9 @@ router.post('/usuario/signup', passport.authenticate('local-signup', {
 }));
 
 router.get('/usuario/logout', usuarioController.logout);
+
+//router.get('/usuario', isAuthenticated, usuarioController.getUsuarios);
+router.get('/usuario', usuarioController.getUsuarios);
+
 
 module.exports = router;

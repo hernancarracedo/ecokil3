@@ -8,4 +8,12 @@ helpers.isAuthenticated = (req, res, next) => {
   res.redirect('/usuario/login');
 };
 
+helpers.isAdmin = (req, res, next) => {
+  if (req.user.role == '55') {
+    return next();
+  }
+  req.flash('error_msg', 'No posee los permisos necesarios.');
+  res.redirect('/perfil/profile');
+};
+
 module.exports = helpers;

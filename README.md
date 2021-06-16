@@ -1,13 +1,6 @@
-# Autenticacion de usuario en Node con MySQL y Passport
-# Motor de plantillas Handlebars
-# mensajes de feedback al usuario con Flash
+# Ejercicio de practica tomando como objetivo un sistemana de gestión para una pequeña empresa de servicios
+# Desarrollo hecho con NodeJS, Express, Plantilla HTML basada en bootstrap, MySQL y Server Side Rendering.
 
-## Instrucciones
-
-1. Clone the repo: `git clone https://github.com/dev-singhamit/node-express-passport-mysql.git`
-1. Instalá las dependencias que usa el proyecto: `npm install`
-1. Editá la configuracion con tu base de datos en: `config/database.js`
-1. Crear el esquema de la Base de dato con comando: `node scripts/create_database.js`
-1. En la consola ejecutá el comando: `node server.js`
-1. Escribí en tu navegador: `http://localhost:8080`
-
+## Gestion de la autenticacion de usuario en Node con MySQL y Passport
+## Server Side Rendering con Motor de plantillas Handlebars
+## Mensajes de feedback al usuario con Flash
